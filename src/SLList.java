@@ -26,12 +26,61 @@ public class SLList {
 
     // add book to end
     public void listAdd(Book book) {
-        //need to add nethod
+        //create a new node using slnode class
+        SLNode newNode = new SLNode(book);
+
+        // check if list is empty, if so then set the new node as the head
+        if (head == null) {
+            head = newNode;
+        }
+        // if list isn't empty make current node the head
+        else {
+            SLNode current = head;
+            // find the last node
+            while (current.next != null) {
+                current = current.next;
+            }
+            // add the new node at the end
+            current.next = newNode;
+        }
+
+
     }
 
     // remove book from pos
     public void listRemove(int pos) {
-        //need to add method
+        //make sure pos is with bounds
+        if (pos < 0 || (pos == 0 && head == null)) {
+            throw new IndexOutOfBoundsException("Invalid position");
+        }
+
+        // if removing the head
+        if (pos == 0) {
+            //make next node the head
+            head = head.next;
+        } else {
+            //set currrent node as the head and prev as null to keep track
+            SLNode current = head;
+            SLNode prev = null;
+            //count used to keep track of traversing
+            int count = 0;
+
+            // find the node at position
+            while (count < pos && current != null) {
+                //shift all the nodes
+                prev = current;
+                current = current.next;
+                count++;
+            }
+
+            // check if pos is out of bounds
+            if (current == null) {
+                throw new IndexOutOfBoundsException("Invalid position");
+            }
+
+            // remove the node at pos
+            prev.next = current.next;
+        }
     }
 
     // convert the sllist to string
