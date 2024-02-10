@@ -1,5 +1,8 @@
 public class Book {
-
+    /*
+    create a Book class that represents a book in the bookstore. The class should have
+    the following member data attributes: title(string), author(string), and price(double).
+     */
     private String title, author;
     private double price;
 
